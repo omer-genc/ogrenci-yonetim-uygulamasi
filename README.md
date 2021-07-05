@@ -1,4 +1,5 @@
 # Öğrenci Yönetim Uygulaması
+[![wakatime](https://wakatime.com/badge/github/omer-genc/ogrenci-yonetim-uygulamasi.svg)](https://wakatime.com/badge/github/omer-genc/ogrenci-yonetim-uygulamasi)
 ## Ekip Üyeleri
 > * Ömer Genç
 > * Kasım Güneş
