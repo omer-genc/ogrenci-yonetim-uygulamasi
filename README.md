@@ -11,3 +11,7 @@
 ## Planlama 1
 ![Planlama1](/images/trello1.png)
 Bu aşamada yazılacak olan bazı metodlara karar verildi
+
+## Çalışma 1
+![Çalışma1](/images/trello2.png)
+Uygulama.cs hariç diğer tüm metodlar yazıldı
