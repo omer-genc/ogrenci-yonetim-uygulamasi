@@ -15,9 +15,9 @@ namespace ogrenci_yonetim_uygulamasi
 
         public List<Ogrenci> Ogrenciler = new List<Ogrenci>();
 
-        public void NotEkle(int no, string ders,int not)
+        public void NotEkle(int no, DERS ders,int not)
         {
-
+            this.OgrenciGetir(no).NotEkle(ders,not);
         }
 
         public void SahteVeriGir()
@@ -63,7 +63,13 @@ namespace ogrenci_yonetim_uygulamasi
         
         public bool OgrenciVarmi(int no)
         {
-            return true;
+            
+            foreach(Ogrenci item in Ogrenciler)
+            {
+                if(item.No == no)
+                    return true;          
+            }
+            return false;
         }
 
         public string OgrenciListele()
@@ -71,77 +77,184 @@ namespace ogrenci_yonetim_uygulamasi
             return "";
         }
         
-        public string OgrenciListele(CINSIYET cinsiyeti)
+        public string OgrenciListele(CINSIYET _cinsiyeti)
         {
-            return "";
+
+            List<Ogrenci> Liste = Ogrenciler.Where(a =>a.Cinsiyeti==_cinsiyeti).ToList();
+            string veriler = "";
+            foreach (Ogrenci item in Liste)
+            {
+               veriler += item.OgrenciVerisiGetir();
+            }
+
+            return veriler;
         }
         
         public string OgrenciListele(DateTime tarih)
         {
-            return "";
+            List<Ogrenci> Liste = Ogrenciler.Where(a =>a.DogumTarihi==tarih).ToList();
+            string veriler = "";
+            foreach (Ogrenci item in Liste)
+            {
+               veriler += item.OgrenciVerisiGetir();
+            }
+
+            return veriler;
         }
         
         public string OgrenciListele(SEMT semt)
         {
-            return "";
+            List<Ogrenci> Liste = Ogrenciler.Where(a =>a.OgrenciAdresi.semti==semt).ToList();
+            string veriler = "";
+            foreach (Ogrenci item in Liste)
+            {
+               veriler += item.OgrenciVerisiGetir();
+            }
+
+            return veriler;
         }
         
-        public string OgrenciListele(SINIF sınıf)
+        public string OgrenciListele(SINIF sinif)
         {
-            return "";
+           List<Ogrenci> Liste = Ogrenciler.Where(a =>a.Sinif==sinif).ToList();
+            string veriler = "";
+            foreach (Ogrenci item in Liste)
+            {
+               veriler += item.OgrenciVerisiGetir();
+            }
+
+            return veriler;
         }
         
+        // 5 öğrenci
         public string OgrenciListele(int basariDurumu_1_0, int sayi)
         {
-            return "";
+            string veriler = "";
+            List<Ogrenci> Liste;
+            if (basariDurumu_1_0 ==1) //başarılı
+                Liste = Ogrenciler.OrderBy(a =>a.OgrenciOrtalaması).Take(sayi).ToList();
+            else  //başarısız  
+                Liste = Ogrenciler.OrderByDescending(a =>a.OgrenciOrtalaması).Take(sayi).ToList();
+            
+            foreach (Ogrenci item in Liste)
+               veriler += item.Ad.PadLeft(15) + item.Soyad.PadLeft(15) + item.No.ToString().PadLeft(15) + "\n";         
+
+            return veriler;
+            
         }
         
         public string OgrenciListele(SINIF sinif,int basariDurumu_1_0, int sayi)
         {
-            return "";
+            string veriler = "";
+            List<Ogrenci> Liste;
+            if (basariDurumu_1_0 ==1) //başarılı
+                Liste = Ogrenciler.Where(a=>a.Sinif==sinif).OrderBy(a =>a.OgrenciOrtalaması).Take(sayi).ToList();
+            else  //başarısız  
+                Liste = Ogrenciler.Where(a=>a.Sinif==sinif).OrderByDescending(a =>a.OgrenciOrtalaması).Take(sayi).ToList();
+            
+            foreach (Ogrenci item in Liste)
+               veriler += item.Ad.PadLeft(15) + item.Soyad.PadLeft(15) + item.No.ToString().PadLeft(15) + "\n";         
+
+            return veriler;
         }
-        
-
-
-
-
-
-
 
         public string OgrenciNotlarıGoruntule(int no)
         {
-            //derse göre sıralayacağız
-            return "";
+            string mat = this.MatNotlari(no);
+            string fen = this.FenNotlari(no);
+            string sos = this.SosNotlari(no);
+            string turk = this.TurkNotlari(no);
+            string ing = this.IngNotlari(no);
+
+            return mat + fen + sos + turk + ing;
+        }
+
+        public string MatNotlari(int no)
+        {
+            List<DersNotu> matNotlari =OgrenciGetir(no).Notlar.Where(x => x.DersAdi == DERS.Mat).ToList();
+            String not = "";
+            foreach(DersNotu item in matNotlari)
+            {
+                not = not + item.NotGetir() + " ";
+            }
+
+            return not + "\n";
+        }
+        public string FenNotlari(int no)
+        {
+            List<DersNotu> matNotlari =OgrenciGetir(no).Notlar.Where(x => x.DersAdi == DERS.Fen).ToList();
+            String not = "";
+            foreach(DersNotu item in matNotlari)
+            {
+                not = not + item.NotGetir() + " ";
+            }
+
+            return not + "\n";
+        }
+        public string TurkNotlari(int no)
+        {
+            List<DersNotu> matNotlari =OgrenciGetir(no).Notlar.Where(x => x.DersAdi == DERS.Turkce).ToList();
+            String not = "";
+            foreach(DersNotu item in matNotlari)
+            {
+                not = not + item.NotGetir() + " ";
+            }
+
+            return not + "\n";
+        }
+        public string SosNotlari(int no)
+        {
+            List<DersNotu> matNotlari =OgrenciGetir(no).Notlar.Where(x => x.DersAdi == DERS.Sosyal).ToList();
+            String not = "";
+            foreach(DersNotu item in matNotlari)
+            {
+                not = not + item.NotGetir() + " ";
+            }
+
+            return not + "\n";
+        }
+        public string IngNotlari(int no)
+        {
+            List<DersNotu> matNotlari =OgrenciGetir(no).Notlar.Where(x => x.DersAdi == DERS.Ing).ToList();
+            String not = "";
+            foreach(DersNotu item in matNotlari)
+            {
+                not = not + item.NotGetir() + " ";
+            }
+
+            return not + "\n";
         }
 
 
         public Ogrenci OgrenciGetir(int no)
         {
-            return new Ogrenci();
+            
+            return Ogrenciler.Find(a => a.No == no);
+            
         }
     
-        public float SinifNotOrtalamasi(SINIF sinif)
+        public double SinifNotOrtalamasi(SINIF sinif)
         {
-
-            return 0;
+            return Ogrenciler.Where(x => x.Sinif == sinif).Average(a => a.OgrenciOrtalaması);
+            
         }
     
-        public void OgrenciAciklamaGir(int no)
+        public void OgrenciAciklamaGir(int no, string aciklama)
         {
-
+            OgrenciGetir(no).Aciklama = aciklama;
         }
 
     
         public string OgrenciAciklamaGetir(int no)
         {
-            return "";
+            return OgrenciGetir(no).Aciklama;
         }
         
         
             
         public void OgrenciKitapGir(int no, string kitap)
         {
-
+            OgrenciGetir(no).KitapEkle(kitap);
         }
 
         public void OgrenciGuncelle(int no)
@@ -153,7 +266,7 @@ namespace ogrenci_yonetim_uygulamasi
     
         public void OgrenciSil(int no)
         {
-            
+            Ogrenciler.Remove(OgrenciGetir(no));
         }
     }
 

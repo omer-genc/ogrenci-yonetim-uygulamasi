@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 namespace ogrenci_yonetim_uygulamasi
+
 {
     
     class Ogrenci
@@ -16,10 +18,11 @@ namespace ogrenci_yonetim_uygulamasi
         public SINIF Sinif {get; set;}
         public List<string> OkuduguKitaplar = new List<string>();
         public List<DersNotu> Notlar = new List<DersNotu>();
-        public float OgrenciOrtalaması 
+        public double OgrenciOrtalaması 
         { get
             {
-                return 0; //sadece get özelliği olacak
+                return this.Notlar.Average(x => x.Not);
+               
             } 
         }
 
@@ -30,18 +33,33 @@ namespace ogrenci_yonetim_uygulamasi
 
         public string KitapListele()
         {
-            return "";
+            string liste = "";
+            foreach(string item in this.Kitaplar)
+            {
+                liste = liste + item + "\n";
+            }
+
+            return liste;
+
+        }
+
+        public void KitapEkle(string kitapismi)
+        {
+            this.Kitaplar.Add(kitapismi);
         }
 
         public string SonKitap()
         {
-            return "";
+            int sayi = Kitaplar.Count;
+            string sonkitap = this.Kitaplar.Take(sayi).ToString(); //// adresi mi döndürüyor bilmiyoruz denenecek
+            return sonkitap;
         }
-        public void DersNotuEkle(string ders_adi, int not)
+        public void DersNotuEkle(DERS ders_adi, int not)
         {
-            
+            DersNotu a = new DersNotu(ders_adi,not);
+            this.Notlar.Add(a);
         }
-        public void NotEkle(string dersAdi, int not)
+        public void NotEkle(DERS dersAdi, int not)
         {
             DersNotu dn = new DersNotu(dersAdi, not);
             this.Notlar.Add(dn);
@@ -62,6 +80,18 @@ namespace ogrenci_yonetim_uygulamasi
         public Ogrenci()
         {
 
+        }
+
+        public void OgrenciAdresiGir(Adres adres)
+        {
+            this.OgrenciAdresi.adresi = adres.adresi;
+            this.OgrenciAdresi.semti = adres.semti; 
+        }
+
+        public string OgrenciVerisiGetir()
+        {
+           string metin = "İsmi: "+ this.Ad + "\n"   +"Soyadı : "+this.Soyad+"\n"   +"Doğum Tarihi : "+this.DogumTarihi+"\n"   +"Açıklaması :"+this.Aciklama +"\n"    +"Cinsiyeti : " +this.Cinsiyeti +"\n"   +"Sınıfı : "+this.Sinif+"\n\n";    
+        return metin;
         }
 
     }
