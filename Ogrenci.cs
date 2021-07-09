@@ -21,6 +21,9 @@ namespace ogrenci_yonetim_uygulamasi
         public double OgrenciOrtalaması 
         { get
             {
+                if (this.Notlar.Count == 0)
+                    return 0;
+                
                 return this.Notlar.Average(x => x.Not);
                
             } 
@@ -84,15 +87,25 @@ namespace ogrenci_yonetim_uygulamasi
 
         public void OgrenciAdresiGir(Adres adres)
         {
-            this.OgrenciAdresi.adresi = adres.adresi;
-            this.OgrenciAdresi.semti = adres.semti; 
+            this.OgrenciAdresi = adres; 
         }
-
+        /*
         public string OgrenciVerisiGetir()
         {
-           string metin = "İsmi: "+ this.Ad + "\n"   +"Soyadı : "+this.Soyad+"\n"   +"Doğum Tarihi : "+this.DogumTarihi+"\n"   +"Açıklaması :"+this.Aciklama +"\n"    +"Cinsiyeti : " +this.Cinsiyeti +"\n"   +"Sınıfı : "+this.Sinif+"\n\n";    
-        return metin;
+            string metin = this.Sinif + "   " + this.No + this.Ad + " " + this.Soyad + this.OgrenciOrtalaması + "  " + this.OkuduguKitaplar.Count;
+
+            return metin;
         }
+        */
+        
+        
+        public string OgrenciVerisiGetir()
+        {
+            string metin = this.Sinif.ToString().PadRight(6) + this.No.ToString().PadRight(8) + (this.Ad + " " + this.Soyad).PadRight(20) + this.OgrenciOrtalaması.ToString().PadRight(10) + this.OkuduguKitaplar.Count.ToString().PadRight(25);
+
+            return metin + "\n";
+        }
+        
 
     }
 

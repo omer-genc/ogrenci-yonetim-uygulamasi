@@ -74,7 +74,12 @@ namespace ogrenci_yonetim_uygulamasi
 
         public string OgrenciListele()
         {
-            return "";
+            string veri = "";
+            foreach (Ogrenci item in Ogrenciler)
+            {
+                veri += item.OgrenciVerisiGetir();
+            }
+            return veri;
         }
         
         public string OgrenciListele(CINSIYET _cinsiyeti)
@@ -92,7 +97,7 @@ namespace ogrenci_yonetim_uygulamasi
         
         public string OgrenciListele(DateTime tarih)
         {
-            List<Ogrenci> Liste = Ogrenciler.Where(a =>a.DogumTarihi==tarih).ToList();
+            List<Ogrenci> Liste = Ogrenciler.Where(a => a.DogumTarihi !<= tarih).ToList();
             string veriler = "";
             foreach (Ogrenci item in Liste)
             {
@@ -133,6 +138,8 @@ namespace ogrenci_yonetim_uygulamasi
             List<Ogrenci> Liste;
             if (basariDurumu_1_0 ==1) //başarılı
                 Liste = Ogrenciler.OrderBy(a =>a.OgrenciOrtalaması).Take(sayi).ToList();
+                
+            
             else  //başarısız  
                 Liste = Ogrenciler.OrderByDescending(a =>a.OgrenciOrtalaması).Take(sayi).ToList();
             
@@ -148,9 +155,9 @@ namespace ogrenci_yonetim_uygulamasi
             string veriler = "";
             List<Ogrenci> Liste;
             if (basariDurumu_1_0 ==1) //başarılı
-                Liste = Ogrenciler.Where(a=>a.Sinif==sinif).OrderBy(a =>a.OgrenciOrtalaması).Take(sayi).ToList();
+                Liste = Ogrenciler.Where(a=>a.Sinif==sinif).OrderBy(a =>a.OgrenciOrtalaması).Skip(sayi).ToList();
             else  //başarısız  
-                Liste = Ogrenciler.Where(a=>a.Sinif==sinif).OrderByDescending(a =>a.OgrenciOrtalaması).Take(sayi).ToList();
+                Liste = Ogrenciler.Where(a=>a.Sinif==sinif).OrderByDescending(a =>a.OgrenciOrtalaması).Skip(sayi).ToList();
             
             foreach (Ogrenci item in Liste)
                veriler += item.Ad.PadLeft(15) + item.Soyad.PadLeft(15) + item.No.ToString().PadLeft(15) + "\n";         
@@ -257,12 +264,7 @@ namespace ogrenci_yonetim_uygulamasi
             OgrenciGetir(no).KitapEkle(kitap);
         }
 
-        public void OgrenciGuncelle(int no)
-        {
-                                    // en son yapılacak
-        }
-
-
+    
     
         public void OgrenciSil(int no)
         {

@@ -1,168 +1,111 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-/*
-not yazdır
-ogrenci açıklama
-*/
+
 namespace ogrenci_yonetim_uygulamasi
 {
     class Uygulama
     {
-        Okul Okul = new Okul();
-
-
-        public void Calistir()
+        Okul Okulumuz = new Okul();
+    
+        
+        public void sahteVeriGir()
         {
-            Okul.SahteVeriGir();
-
-            Okul.NotEkle(1, "Türkçe", 60);
-
-
-
-            //menu
-            //secim al
-            //switch case
-        }
-
-
-
-        public void NotGir()
-        {
-            Console.WriteLine("2-Not Gir -------------------------------------------------");
-            Console.WriteLine("Öğrencinin Numarası: ");
-            int no = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Eklemek istediğiniz ders adı: ");
-            string dersAdi = Console.ReadLine();
-
-            Console.WriteLine("Eklemek istediğiniz not adedi:");
-            int adet = int.Parse(Console.ReadLine());
-
-            for (int i = 1; i <= adet; i++)
+            Okulumuz.OgrenciEkle(12,"Ömer","Genç",CINSIYET.Erkek,new DateTime(1997,09,29),SINIF.A,"");
+            Okulumuz.OgrenciEkle(13,"Ümit can","Kizilkaya",CINSIYET.Erkek,new DateTime(1997,07,16),SINIF.B,"");
+            Okulumuz.OgrenciEkle(14,"Dilera","Dilamma",CINSIYET.Kiz,new DateTime(1997,12,25),SINIF.C,"");
+            Okulumuz.OgrenciEkle(15,"Umur","Samaz",CINSIYET.Kiz,new DateTime(1997,01,01),SINIF.D,"");
+            Okulumuz.OgrenciEkle(17,"Rıza","Silahlıpoda",CINSIYET.Erkek,new DateTime(1997,01,01),SINIF.D,"");
+            Okulumuz.OgrenciEkle(18,"Nuh","Tufan",CINSIYET.Erkek,new DateTime(1997,01,01),SINIF.D,"");
+        }    
+       
+        public void RUN()
+        {   
+            sahteVeriGir();
+            Menu();
+            string giris =null;
+            while (true)
             {
-                Console.Write(i + ". notu girin: ");
-                int not = int.Parse(Console.ReadLine());
-
-                if (not < 0 || not > 100)
+                System.Console.Write("\n\nSeçiminiz: ");
+                giris = Console.ReadLine();
+               
+                switch (giris)
                 {
-                    Console.WriteLine("Girdiğiniz değer 0 ve 100 arasında olmalıdır.");
-                    i--;
-                    continue;
+                    case "1":
+                        U_OgrenciEkle();
+                        break;
+
+                    case "2" :
+                        U_NotGir();
+                        break;
+
+                    case "3" :
+                        U_OgrenciOrtalamasiGor();
+                        break;
+                        
+                    case "4" :
+                        U_OgrenciAdresiGir();
+                        break;
+                    case "5":
+                        U_TumOgrenciListele();
+                        break;
+                    case "6":
+                        U_SubeOgrenciListele();
+                        break;
+                    case "7":
+                        U_OgrenciNotlariGoster();
+                        break;
+                    case "8":
+                        U_SinifOrtalamasiGor();
+                        break;
+                    case "9":
+                        U_CinsiyeteGoreOgrenciGetir();
+                        break;
+                    case "10":
+                        U_TarihtenSonrakiOgrenciler();
+                        break;
+                    case "11":
+                        U_SemteGoreTumListele();
+                        break;
+                    case "12":
+                        U_OkulEnIyi5();
+                        break;
+                    case "13":
+                        U_OkulEnKotu3();
+                        break;
+                    case "14":
+                        U_SinifEnIyi5();
+                        break;
+                    case "15":
+                        U_SinifEnKotu3();
+                        break;
+                    case "16":
+                        U_OgrenciAciklamaGir();
+                        break;
+                    case "17":
+                        U_OgrenciAciklamaGor();
+                        break;
+                    case "18":
+                        U_OgrenciKitapGir();
+                        break;
+                    case "19":
+                        U_OgrenciKitapListele();
+                        break;
+                    case "20":
+                        U_OgrenciSonKitap();
+                        break;
+                    case "21":
+                        U_OgrenciSil();
+                        break;
+                    case "22":
+                        U_OgrenciGuncelle();
+                        break;
+                    case "çıkış":
+                    case "0":
+                        Environment.Exit(0);
+                        break;
                 }
 
-                Okul.NotEkle(no, dersAdi, not);
-            }
-
-        }
-
-        public void MenuKarar()
-        {
-            bool karar = true;
-            do
-            {
-                Console.WriteLine("Menüyü listelemek için “liste”, çıkış yapmak için “çıkış” yazın.");
-                Console.Write("Yapmak istediğiniz işlemi seçin: ");
-                string giris = Console.ReadLine();
-                if (giris.ToLower() == "liste")
-                {
-                    Menu();
-                }
-                else if (giris.ToLower() == "çıkış")
-                {
-                    Environment.Exit(0);
-                }
-                else
-                {
-                    Console.WriteLine("Yanlış bir değer girdiniz, lütfen tekrar deneyiniz");
-                    karar = false;
-                }
-                Console.WriteLine();
-            } while (!karar);
-        }
-
-        public string SecimAl()
-        {
-            Console.BackgroundColor = ConsoleColor.Cyan;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("Çıkış yapmak için “çıkış” yazıp “enter”a basın.");
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine();
-            Console.Write("Seçiminiz: ");
-            return Console.ReadLine();
-        }
-
-
-        public void IslemKarari()
-        {
-            string giris = SecimAl();
-
-            switch (giris)
-            {
-                case "1":
-                    OgrenciEkle();
-                    MenuKarar();
-                    break;
-
-                case "5":
-                    ListeYazdir(Okul.TumOgrenciListesi());
-                    MenuKarar();
-                    break;
-                case "6":
-                    //
-                    break;
-                case "7":
-                    //
-                    break;
-                case "8":
-                    //
-                    break;
-                case "9":
-                    //
-                    break;
-                case "10":
-                    //
-                    break;
-                case "11":
-                    //
-                    break;
-                case "12":
-                    //
-                    break;
-                case "13":
-                    //
-                    break;
-                case "14":
-                    //
-                    break;
-                case "15":
-                    //
-                    break;
-                case "16":
-                    //
-                    break;
-                case "17":
-                    //
-                    break;
-                case "18":
-                    //
-                    break;
-                case "19":
-                    //
-                    break;
-                case "20":
-                    //
-                    break;
-                case "21":
-                    //
-                    break;
-                case "22":
-                    //
-                    break;
-                case "çıkış":
-                    Environment.Exit(0);
-                    break;
             }
 
 
@@ -196,145 +139,466 @@ namespace ogrenci_yonetim_uygulamasi
             Console.WriteLine("20 - Öğrencinin okuduğu son kitabı görüntüle");
             Console.WriteLine("21 - Öğrenci sil");
             Console.WriteLine("22 - Öğrenci güncelle");
+            Console.WriteLine("Çıkış İçin 0");
         }
-
-        public void OgrenciEkle()
+        public void U_OgrenciAciklamaGir()
         {
-            Console.WriteLine("1 - Öğrenci Ekle---------------------------------------------");
-            Console.Write("Öğrencinin numarası: ");
-            int no = Okul.NoKontrol();
-            Console.Write("Öğrencinin adı: ");
-            string ad = Console.ReadLine();
-            Console.Write("Öğrencinin soyadı: ");
-            string soyad = Console.ReadLine();
-            Console.Write("Öğrencinin doğum tarihi: ");
-            DateTime dogumTarihi = Convert.ToDateTime(Console.ReadLine());
-            CINSIYET cinsiyet = CinsiyetAl(); ;
-            SINIF sinifi = SinifAl();
-            Console.Write("Öğrenci hakkındaki açıklamayı giriniz: ");
-            string aciklama = Console.ReadLine() ?? null;
+            Console.WriteLine("Öğrencinin Açıklamasını Gir ------------------");
+            int gelenNo=IntAl("Öğrencinin Numarası: ");
+            
+            if (Okulumuz.OgrenciVarmi(gelenNo))
+            {
+                Console.WriteLine("Açıklamayı Giriniz...");
+                string aciklama=Console.ReadLine();
+                Okulumuz.OgrenciAciklamaGir(gelenNo,aciklama) ;  
+            }
+            else
+                Console.WriteLine("Böyle bir öğrenci yoktur.");
+                
+            
+           
+        }
+        public void U_OgrenciKitapGir()
+        {
+            Console.WriteLine("Öğrencinin Okuduğu Kitapları Gir ------------------");
+            int gelenNo=IntAl("Öğrencinin Numarası: ");
+            Ogrenci o = null;
+            if (Okulumuz.OgrenciVarmi(gelenNo))
+            {
+                o = this.Okulumuz.OgrenciGetir(gelenNo);    
+            }
+            else
+            {
+                Console.WriteLine("Böyle bir öğrenci yoktur.");
+                return;
+            }
+            Console.WriteLine("Okuduğu Kitabın İsmi :");
+            string kitap =Console.ReadLine();
+            o.KitapEkle(kitap);
+        }
+        public void U_OgrenciAdresiGir()
+       {
+            Console.WriteLine("Öğrenci Adersi Gir ------------------");
+            int gelenNo=IntAl("Öğrencinin Numarası: ");
+            
+            if (!Okulumuz.OgrenciVarmi(gelenNo))
+            {
+                Console.WriteLine("Böyle bir öğrenci yoktur.");
+                return;
+            }
+            
+              
+            Console.WriteLine("Öğrencinin adresi ve semti girilecektir.");
+            Console.WriteLine("Adresi Giriniz..");
+            string adres =Console.ReadLine();
+            SEMT s =SemtAl();
+            Adres adresi = new Adres(s,adres);
+            this.Okulumuz.OgrenciGetir(gelenNo).OgrenciAdresiGir(adresi) ;
+        }
 
-            Okul.Ogrenciler.Add(new Ogrenci(no, ad, soyad, cinsiyet, dogumTarihi, sinifi, aciklama));
-            Console.WriteLine(no + " numaralı öğrenci sisteme başarılı bir şekilde eklenmiştir. ");
-            Console.WriteLine();
+        public void U_SinifOrtalamasiGor()
+        {
+            SINIF Sinif=SinifAl("Sınıf seçimi: ");
+            double Ort=Okulumuz.SinifNotOrtalamasi(Sinif);
+            Console.WriteLine(Sinif +" Sınıfının Ortalaması : "+Ort);
+        }
+
+       public void U_NotGir()
+       {
+            Console.WriteLine("Not Gir ---------------------");
+            int gelenNo=IntAl("Öğrencinin Numarası: ");
+            if (!Okulumuz.OgrenciVarmi(gelenNo))
+            {
+                Console.WriteLine("Böyle bir öğrenci yoktur.");
+                return;
+                
+            }
+
+                
+            Console.WriteLine("Notunu girmek istediğiniz dersi giriniz...");
+            DERS _Ders = DersAl();
+            
+            while(true)
+            {
+                int Not = IntAl("Öğrencinin Notunu Giriniz : ");
+                if (Not<0 || Not>100)
+                    Console.WriteLine("Girdiğiniz değer 0 ve 100 arasında olmalıdır.");
+                    
+                else
+                {
+                    this.Okulumuz.OgrenciGetir(gelenNo).NotEkle(_Ders,Not);
+                    return;
+                }  
+                
+            }
+       }
+
+        public void U_OgrenciNotlariGoster()
+        {
+            Console.WriteLine("Not Göster ---------------------");
+            int gelenNo=IntAl("Öğrencinin Numarası: ");
+            if (Okulumuz.OgrenciVarmi(gelenNo))
+                System.Console.WriteLine(Okulumuz.OgrenciNotlarıGoruntule(gelenNo));
+            
+            else
+                Console.WriteLine("Böyle bir öğrenci yoktur.");
+        }
+
+        public void U_OkulEnIyi5()
+        {
+            Console.WriteLine("Okulun En İyi İlk 5 Öğrencisi");
+            string Liste=Okulumuz.OgrenciListele(1,5);
+            Console.WriteLine(Liste);
+        }
+        public void U_OkulEnKotu3()
+        {
+            Console.WriteLine("Okulun En Kötü Son 3 Öğrencisi");
+            string Liste=Okulumuz.OgrenciListele(0,3);
+            Console.WriteLine(Liste);
+        }
+        public void U_SinifEnIyi5()
+        {
+            SINIF _sinif =SinifAl("Sınıf seçimi: ");
+            Console.WriteLine("Sınıfın En İyi İlk 5 Öğrencisi");
+            string Liste=Okulumuz.OgrenciListele(_sinif,1,5);
+            Console.WriteLine(Liste);
+        }
+        public void U_SinifEnKotu3()
+        {
+             SINIF _sinif =SinifAl("Sınıf seçimi: ");
+            Console.WriteLine("Sınıfın En Kötü Son 3 Öğrencisi");
+            string Liste=Okulumuz.OgrenciListele(_sinif,0,3);
+            Console.WriteLine(Liste);
+        }
+
+        public void U_OgrenciSonKitap()
+        {
+            int gelenNo=IntAl("Öğrencinin Numarası: ");
+            Ogrenci o = null;
+            if (Okulumuz.OgrenciVarmi(gelenNo))
+            {
+                o = this.Okulumuz.OgrenciGetir(gelenNo);
+                string kitap =o.SonKitap(); 
+                Console.WriteLine(kitap);   
+            }
+            else
+            {
+                Console.WriteLine("Böyle bir öğrenci yoktur.");
+                return;
+            }
+            
         }
 
 
-        public void ListeYazdir(List<Ogrenci> liste)
+        public void ListeYazdir()
+        {
+            Console.WriteLine("Şube".PadRight(6) + "No".PadRight(8) + "Adı Soyadı".PadRight(20) + "Not Ort.".PadRight(10) + "Okuduğu Kitap Sayısı".PadRight(25));
+           
+        }
+
+        public void U_OgrenciEkle()
+        {
+            System.Console.WriteLine("1-Öğrenci Ekle ---------------------------------------------");
+            int OgrenciNo = IntAl("Öğrencinin numarası:");
+            System.Console.Write("Öğrencinin adı:");
+            string OgrenciAdi = Console.ReadLine();
+            System.Console.Write("Öğrencinin soyadı:");
+            string OgrenciSoyadi = Console.ReadLine();
+            System.Console.Write("Öğrencinin doğum tarihi (dd/mm/yyyy):");
+            DateTime tarih = DateTime.Parse(Console.ReadLine());
+            CINSIYET cinsiyeti = CinsiyetAl("Öğrencinin cinsiyeti(K/E):");
+            SINIF sinifi = SinifAl("Sınıf seçimi: ");
+            
+            int yeniNo = 0;
+            if(Okulumuz.OgrenciVarmi(OgrenciNo))
+            {
+                yeniNo = OgrenciNo;
+                while(Okulumuz.OgrenciVarmi(yeniNo))
+                    yeniNo++;
+                
+                System.Console.WriteLine(yeniNo + " numaralı öğrenci sisteme başarılı bir şekilde eklenmiştir. Sistemde" + OgrenciNo + " numaralı öğrenci olduğu için verdiğiniz öğrenci no " + yeniNo +" olarak değiştirildi.");
+            }
+            Okulumuz.OgrenciEkle(yeniNo,OgrenciAdi,OgrenciSoyadi,cinsiyeti,tarih,sinifi,"");
+        }
+        
+        public void U_OgrenciGuncelle()
+        {
+            System.Console.WriteLine("Öğrenci Güncelle");
+            int gelenNo=IntAl("Öğrencinin Numarası: ");
+            Ogrenci o = null;
+            if (!Okulumuz.OgrenciVarmi(gelenNo))
+            {
+                Console.WriteLine("Böyle bir öğrenci yoktur.");
+                return;
+            }
+
+            o = this.Okulumuz.OgrenciGetir(gelenNo);    
+            int index = Okulumuz.Ogrenciler.IndexOf(o);
+            Okulumuz.OgrenciVarmi(gelenNo);
+
+
+            int OgrenciNo = IntAl("Yeni öğrencinin numarası:");
+            System.Console.Write("Yeni öğrencinin adı:");
+            string OgrenciAdi = Console.ReadLine();
+            System.Console.Write("Yeni öğrencinin soyadı:");
+            string OgrenciSoyadi = Console.ReadLine();
+            System.Console.Write("Yeni Öğrencinin doğum tarihi (dd/mm/yyyy):");
+            DateTime tarih = DateTime.Parse(Console.ReadLine());
+            CINSIYET cinsiyeti = CinsiyetAl("Yeni öğrencinin cinsiyeti(K/E):");
+            SINIF sinifi = SinifAl("Yeni öğrencinin sınıf şubesi:");
+
+            int yeniNo = 0;
+            if(Okulumuz.OgrenciVarmi(OgrenciNo))
+            {
+                yeniNo = OgrenciNo;
+                while(Okulumuz.OgrenciVarmi(yeniNo))
+                    yeniNo++;
+                
+                System.Console.WriteLine(yeniNo + " numaralı öğrenci sisteme başarılı bir şekilde eklenmiştir. Sistemde" + OgrenciNo + " numaralı öğrenci olduğu için verdiğiniz öğrenci no 35 olarak değiştirildi.");
+            }
+            Ogrenci x = new Ogrenci(yeniNo,OgrenciAdi,OgrenciSoyadi,cinsiyeti,tarih,sinifi,"");
+            
+            Okulumuz.Ogrenciler.Insert(index,x);
+
+            
+            
+        }
+
+        public void U_OgrenciOrtalamasiGor()
+        {
+            int no = IntAl("Ogrenci no giriniz: ");
+            if (!Okulumuz.OgrenciVarmi(no))
+                System.Console.WriteLine("Böyle bir öğrenci yok");
+            else
+                System.Console.WriteLine("Ortalama: " + Okulumuz.OgrenciGetir(no).OgrenciOrtalaması);;
+            
+        }
+
+        public void U_OgrenciAciklamaGor()
+        {
+            Console.WriteLine("Öğrencinin Okuduğu Kitapları Gir ------------------");
+            int gelenNo=IntAl("Öğrencinin Numarası: ");
+            Ogrenci o = null;
+            if (Okulumuz.OgrenciVarmi(gelenNo))
+            {
+                o = this.Okulumuz.OgrenciGetir(gelenNo);
+                Console.WriteLine(o.Aciklama);
+            }
+            else
+            {
+                Console.WriteLine("Böyle bir öğrenci yoktur.");
+                return;
+            }
+
+
+        }
+        
+        public void U_TumOgrenciListele()
         {
             Console.WriteLine("Şube".PadRight(6) + "No".PadRight(8) + "Adı Soyadı".PadRight(20) + "Not Ort.".PadRight(10) + "Okuduğu Kitap Sayısı".PadRight(25));
             Console.WriteLine("-----".PadRight(6) + "---".PadRight(8) + "-----------".PadRight(20) + "---------".PadRight(10) + "---------------------".PadRight(25));
-            foreach (var item in liste)
-            {
-                Console.WriteLine(item.Sinif.ToString().PadRight(6) + item.No.ToString().PadRight(8) + (item.Ad + " " + item.Soyad).PadRight(20)); //ders notu ve okuduğu kitap sayısı eklenecek
-            }
+            System.Console.WriteLine(Okulumuz.OgrenciListele());
+            
+            
+        }
+        
+        public void U_SubeOgrenciListele()
+        {
+            SINIF secim = SinifAl("Sınıf seçimi: ");
+            Console.WriteLine("Şube".PadRight(6) + "No".PadRight(8) + "Adı Soyadı".PadRight(20) + "Not Ort.".PadRight(10) + "Okuduğu Kitap Sayısı".PadRight(25));
+            Console.WriteLine("-----".PadRight(6) + "---".PadRight(8) + "-----------".PadRight(20) + "---------".PadRight(10) + "---------------------".PadRight(25));
+            System.Console.WriteLine(Okulumuz.OgrenciListele(secim));
+            
+        }
+        
+        public void U_CinsiyeteGoreOgrenciGetir()
+        {
+            CINSIYET secim = CinsiyetAl("Cinseyet seçiniz(K/E): ");
+            Console.WriteLine("Şube".PadRight(6) + "No".PadRight(8) + "Adı Soyadı".PadRight(20) + "Not Ort.".PadRight(10) + "Okuduğu Kitap Sayısı".PadRight(25));
+            Console.WriteLine("-----".PadRight(6) + "---".PadRight(8) + "-----------".PadRight(20) + "---------".PadRight(10) + "---------------------".PadRight(25));
+            System.Console.WriteLine(Okulumuz.OgrenciListele(secim));
+            
+        }
+        public void U_TarihtenSonrakiOgrenciler()
+        {
+            DateTime secim = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Şube".PadRight(6) + "No".PadRight(8) + "Adı Soyadı".PadRight(20) + "Not Ort.".PadRight(10) + "Okuduğu Kitap Sayısı".PadRight(25));
+            Console.WriteLine("-----".PadRight(6) + "---".PadRight(8) + "-----------".PadRight(20) + "---------".PadRight(10) + "---------------------".PadRight(25));
+            System.Console.WriteLine(Okulumuz.OgrenciListele(secim));
+            
+        }
+        public void U_SemteGoreTumListele()
+        {
+            SEMT secim = SemtAl();
+            Console.WriteLine("Şube".PadRight(6) + "No".PadRight(8) + "Adı Soyadı".PadRight(20) + "Not Ort.".PadRight(10) + "Okuduğu Kitap Sayısı".PadRight(25));
+            Console.WriteLine("-----".PadRight(6) + "---".PadRight(8) + "-----------".PadRight(20) + "---------".PadRight(10) + "---------------------".PadRight(25));
+            System.Console.WriteLine(Okulumuz.OgrenciListele(secim));
+            
         }
 
-
-
-        //mytoolbox
-
-        public static string MetinDuzeni(string veri)
+        public void U_OgrenciKitapListele()
         {
-            if (veri.Length > 0)
-            {
-                return veri.Substring(0, 1).ToUpper() + veri.Substring(1).ToLower();
-            }
-            return null;
+            int no = IntAl("Öğrenci no: ");
 
+            if (Okulumuz.OgrenciVarmi(no))
+                System.Console.WriteLine(Okulumuz.OgrenciGetir(no).KitapListele());
+            else
+                System.Console.WriteLine("Böyle bir öğrenci yok"); 
+            
         }
 
-        static public int SayiAl()
+        public void U_OgrenciSil()
         {
-            int sayi;
+            int no = IntAl("No giriniz");
+            if (Okulumuz.OgrenciVarmi(no))
+            {
+                Okulumuz.OgrenciSil(no);
+                System.Console.WriteLine("Öğrenci silindi");
+            }
+            else
+                System.Console.WriteLine("Böyle bir öğrenci yok");
+            
+        }
+        
+        
+
+        // Static
+        static public int IntAl(string text)
+        {
+            string girdi = "";
+            int sayi = 0;
+
             do
             {
-                string giris = Console.ReadLine();
-                if (int.TryParse(giris, out sayi))
-                {
-                    return sayi;
-                }
-                else
-                {
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Hatalı giriş yapıldı, tekrar deneyin.");
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.ForegroundColor = ConsoleColor.White;
+                System.Console.Write(text);
+                girdi = Console.ReadLine();
+                
+                
+            } while (!int.TryParse(girdi,out sayi));
 
-                }
-            } while (true);
+            return sayi;
         }
 
-        public static CINSIYET CinsiyetAl()
+        static public DERS DersAl()
         {
-            CINSIYET cinsiyet;
-
-            Console.Write("Öğrencinin cinsiyeti(K/ E): ");
-
-            string giris = Console.ReadLine();
-
-
-            if (giris.ToLower() == "k" || giris.ToLower() == "e")
+            
+            Console.WriteLine("1. Türkçe ");
+            Console.WriteLine("2. Matematik ");
+            Console.WriteLine("3. Sosyal ");
+            Console.WriteLine("4. Fen .");
+            Console.WriteLine("5. İngilizce");
+            string girdi="";
+            while (true)
             {
-
-                if (giris.ToLower() == "k")
+                girdi = Console.ReadLine();
+                switch(girdi)
                 {
-                    cinsiyet = CINSIYET.Kiz;
-                    return cinsiyet;
+                    case "1":
+                        return DERS.Turkce;
+                    case "2":
+                        return DERS.Mat;
+                    case "3":
+                        return DERS.Sosyal;
+                    case "4":
+                        return DERS.Fen;
+                    case "5":
+                        return DERS.Ing;
+                    default :
+                        Console.WriteLine("Hatalı giriş yapıldı lütfen tekrar deneyiniz...");
+                        break;
                 }
-                else
-                {
-                    cinsiyet = CINSIYET.Erkek;
-                    return cinsiyet;
-                }
-            }
-            else
-            {
-                Console.BackgroundColor = ConsoleColor.Yellow;
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("     Yanlış bir değer girdiniz. Lütfen tekrar deneyin.");
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine();
 
-                return CinsiyetAl();
+                
             }
 
         }
-
-        static public SINIF SinifAl()
+        
+        static public CINSIYET CinsiyetAl(string text)
         {
-            Console.Write("Öğrencinin sınıf şubesi: ");
-            string giris = Console.ReadLine();
-            SINIF sinifi;
+            System.Console.Write(text);
+            string girdi = "";
 
-            if (giris.ToLower() == "a")
+            while (true)
             {
-                sinifi = SINIF.A;
+                girdi = Console.ReadLine();
+
+                switch (girdi.ToUpper())
+                {
+                    case "K":
+                        return CINSIYET.Kiz;
+                    case "E":
+                        return CINSIYET.Erkek;
+                    default:
+                        System.Console.WriteLine("Hatalı giriş tekrar deneyiniz..");
+                        break;
+                }   
             }
-            else if (giris.ToLower() == "b")
-            {
-                sinifi = SINIF.B;
-            }
-            else if (giris.ToLower() == "c")
-            {
-                sinifi = SINIF.C;
-            }
-            else if (giris.ToLower() == "d")
-            {
-                sinifi = SINIF.D;
-            }
-            else
-            {
-                Console.WriteLine("     Yanlış bir değer girdiniz. Lütfen tekrar deneyin.");
-                return SinifAl();
-            }
-            return sinifi;
         }
 
 
 
+
+
+
+        static public SEMT SemtAl()
+        {
+            System.Console.WriteLine("1. Avcilar\n2.Besiktas\n3.Kadiköy\n4.Sisli");
+
+            
+            string girdi = "";
+            do
+            {
+                girdi = Console.ReadLine();
+                switch (girdi)
+                {
+                    case "1":
+                        return SEMT.Avcilar;
+                    case "2":
+                        return SEMT.Besiktas;
+                    case "3":
+                        return SEMT.Kadiköy;
+                    case "4":
+                        return SEMT.Sisli;
+                    default:
+                        System.Console.WriteLine("Hatalı giriş tekrar deneyiniz");
+                        break;
+                        
+                }
+            
+            }while(true);
+        }
+
+        static public SINIF SinifAl(string text)
+        {
+            System.Console.WriteLine("1. A\n2. B\n3. C\n4. D");
+            
+            
+            string girdi = "";
+            do
+            {
+                System.Console.Write(text);
+                girdi = Console.ReadLine();
+                switch (girdi)
+                {
+                    case "1":
+                        return SINIF.A;
+                    case "2":
+                        return SINIF.B;
+                    case "3":
+                        return SINIF.C;
+                    case "4":
+                        return SINIF.D;
+                    default:
+                        System.Console.WriteLine("Hatalı giriş tekrar deneyiniz");
+                        break;
+                        
+                }
+            
+            }while(true);
+        }
+
+        
+        
 
 
     }

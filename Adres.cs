@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace ogrenci_yonetim_uygulamasi
 {
@@ -9,8 +10,15 @@ namespace ogrenci_yonetim_uygulamasi
         //semtler yazılacak (muhtemelen enum)
         public string adresi {get; set;}
 
-        public SEMT semti {get; set;} 
+        public SEMT semti {get; set;}
+
+        public Adres(SEMT _semti, string _adresi)
+        {
+            this.semti = _semti;
+            this.adresi = _adresi; 
+        }
     }
+    
 
     public enum SEMT
     {

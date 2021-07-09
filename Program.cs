@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ogrenci_yonetim_uygulamasi
 {
@@ -6,7 +7,8 @@ namespace ogrenci_yonetim_uygulamasi
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Uygulama x = new Uygulama();
+            x.RUN();
         }
     }
 }

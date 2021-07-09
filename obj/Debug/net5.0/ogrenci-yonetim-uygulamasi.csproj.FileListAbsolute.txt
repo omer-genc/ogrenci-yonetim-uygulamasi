@@ -1,0 +1,16 @@
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\bin\Debug\net5.0\ogrenci-yonetim-uygulamasi.exe
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\bin\Debug\net5.0\ogrenci-yonetim-uygulamasi.deps.json
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\bin\Debug\net5.0\ogrenci-yonetim-uygulamasi.runtimeconfig.json
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\bin\Debug\net5.0\ogrenci-yonetim-uygulamasi.runtimeconfig.dev.json
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\bin\Debug\net5.0\ogrenci-yonetim-uygulamasi.dll
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\bin\Debug\net5.0\ref\ogrenci-yonetim-uygulamasi.dll
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\bin\Debug\net5.0\ogrenci-yonetim-uygulamasi.pdb
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\obj\Debug\net5.0\ogrenci-yonetim-uygulamasi.csproj.AssemblyReference.cache
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\obj\Debug\net5.0\ogrenci-yonetim-uygulamasi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\obj\Debug\net5.0\ogrenci-yonetim-uygulamasi.AssemblyInfoInputs.cache
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\obj\Debug\net5.0\ogrenci-yonetim-uygulamasi.AssemblyInfo.cs
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\obj\Debug\net5.0\ogrenci-yonetim-uygulamasi.csproj.CoreCompileInputs.cache
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\obj\Debug\net5.0\ogrenci-yonetim-uygulamasi.dll
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\obj\Debug\net5.0\ref\ogrenci-yonetim-uygulamasi.dll
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\obj\Debug\net5.0\ogrenci-yonetim-uygulamasi.pdb
+C:\Users\omerg\git\ogrenci-yonetim-uygulamasi\obj\Debug\net5.0\ogrenci-yonetim-uygulamasi.genruntimeconfig.cache
