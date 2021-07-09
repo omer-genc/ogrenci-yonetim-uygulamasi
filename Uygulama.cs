@@ -421,18 +421,45 @@ namespace ogrenci_yonetim_uygulamasi
         }
         public void U_TarihtenSonrakiOgrenciler()
         {
-            DateTime secim = DateTime.Parse(Console.ReadLine());
-            Console.WriteLine("Şube".PadRight(6) + "No".PadRight(8) + "Adı Soyadı".PadRight(20) + "Not Ort.".PadRight(10) + "Okuduğu Kitap Sayısı".PadRight(25));
-            Console.WriteLine("-----".PadRight(6) + "---".PadRight(8) + "-----------".PadRight(20) + "---------".PadRight(10) + "---------------------".PadRight(25));
-            System.Console.WriteLine(Okulumuz.OgrenciListele(secim));
+            try
+            {
+                Console.Write("Tarih gitiniz(gg/aa/yyyy): ");
+                DateTime secim = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine("Şube".PadRight(6) + "No".PadRight(8) + "Adı Soyadı".PadRight(20) + "Not Ort.".PadRight(10) + "Okuduğu Kitap Sayısı".PadRight(25));
+                Console.WriteLine("-----".PadRight(6) + "---".PadRight(8) + "-----------".PadRight(20) + "---------".PadRight(10) + "---------------------".PadRight(25));
+                System.Console.WriteLine(Okulumuz.OgrenciListele(secim));
+            }
+            catch (System.Exception)
+            {
+                
+                System.Console.WriteLine("Tarih bilgisi yanlış formatta");
+            }
+            
             
         }
         public void U_SemteGoreTumListele()
         {
-            SEMT secim = SemtAl();
-            Console.WriteLine("Şube".PadRight(6) + "No".PadRight(8) + "Adı Soyadı".PadRight(20) + "Not Ort.".PadRight(10) + "Okuduğu Kitap Sayısı".PadRight(25));
-            Console.WriteLine("-----".PadRight(6) + "---".PadRight(8) + "-----------".PadRight(20) + "---------".PadRight(10) + "---------------------".PadRight(25));
-            System.Console.WriteLine(Okulumuz.OgrenciListele(secim));
+            
+            
+            try
+            {
+                Console.WriteLine("Şube".PadRight(6) + "No".PadRight(8) + "Adı Soyadı".PadRight(20) + "Not Ort.".PadRight(10) + "Okuduğu Kitap Sayısı".PadRight(25));
+                Console.WriteLine("-----".PadRight(6) + "---".PadRight(8) + "-----------".PadRight(20) + "---------".PadRight(10) + "---------------------".PadRight(25));
+                System.Console.WriteLine("Avcilar");
+                System.Console.WriteLine(Okulumuz.OgrenciListele(SEMT.Avcilar));
+                System.Console.WriteLine("\n\nBesiktas");
+                System.Console.WriteLine(Okulumuz.OgrenciListele(SEMT.Besiktas));
+                System.Console.WriteLine("\n\nKadiköy");
+                System.Console.WriteLine(Okulumuz.OgrenciListele(SEMT.Kadiköy));
+                System.Console.WriteLine("\n\nSisli");
+                System.Console.WriteLine(Okulumuz.OgrenciListele(SEMT.Sisli));
+            }
+            catch (System.Exception)
+            {
+                
+                System.Console.WriteLine("Tüm öğrencilerin adres bilgisi gerekli");
+            }
+            
             
         }
 

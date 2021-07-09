@@ -97,7 +97,7 @@ namespace ogrenci_yonetim_uygulamasi
         
         public string OgrenciListele(DateTime tarih)
         {
-            List<Ogrenci> Liste = Ogrenciler.Where(a => a.DogumTarihi !<= tarih).ToList();
+            List<Ogrenci> Liste = Ogrenciler.Where(a => a.DogumTarihi.CompareTo(tarih) == -1).ToList();
             string veriler = "";
             foreach (Ogrenci item in Liste)
             {

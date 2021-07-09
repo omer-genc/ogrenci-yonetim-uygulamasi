@@ -16,7 +16,6 @@ namespace ogrenci_yonetim_uygulamasi
         public string Aciklama { get; set; }
         public CINSIYET Cinsiyeti {get; set;}
         public SINIF Sinif {get; set;}
-        public List<string> OkuduguKitaplar = new List<string>();
         public List<DersNotu> Notlar = new List<DersNotu>();
         public double OgrenciOrtalaması 
         { get
@@ -53,8 +52,8 @@ namespace ogrenci_yonetim_uygulamasi
 
         public string SonKitap()
         {
-            int sayi = Kitaplar.Count;
-            string sonkitap = this.Kitaplar.Take(sayi).ToString(); //// adresi mi döndürüyor bilmiyoruz denenecek
+            int sayi = this.Kitaplar.Count;
+            string sonkitap = this.Kitaplar[sayi];
             return sonkitap;
         }
         public void DersNotuEkle(DERS ders_adi, int not)
@@ -101,7 +100,7 @@ namespace ogrenci_yonetim_uygulamasi
         
         public string OgrenciVerisiGetir()
         {
-            string metin = this.Sinif.ToString().PadRight(6) + this.No.ToString().PadRight(8) + (this.Ad + " " + this.Soyad).PadRight(20) + this.OgrenciOrtalaması.ToString().PadRight(10) + this.OkuduguKitaplar.Count.ToString().PadRight(25);
+            string metin = this.Sinif.ToString().PadRight(6) + this.No.ToString().PadRight(8) + (this.Ad + " " + this.Soyad).PadRight(20) + this.OgrenciOrtalaması.ToString().PadRight(10) + this.Kitaplar.Count.ToString().PadRight(25);
 
             return metin + "\n";
         }
