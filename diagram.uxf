@@ -1,0 +1,136 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;1008&lt;/x&gt;&lt;y&gt;360&lt;/y&gt;&lt;w&gt;30&lt;/w&gt;&lt;h&gt;200&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=&amp;lt;&amp;lt;-&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;180;10;10&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;682&lt;/x&gt;&lt;y&gt;90&lt;/y&gt;&lt;w&gt;210&lt;/w&gt;&lt;h&gt;30&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=&amp;lt;&amp;lt;-&lt;/panel_attributes&gt;&lt;additional_attributes&gt;190;10;10;10&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;l</help_text><element><id>UMLClass</id><coordinates><x>340</x><y>0</y><w>300</w><h>140</h></coordinates><panel_attributes>bg=red
+Adres
+-
++string adresi 
++SEMT semti
+-
++Adres(SEMT _semti, string _adresi)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>340</x><y>190</y><w>300</w><h>190</h></coordinates><panel_attributes>bg=red
+DersNotu
+-
++ DERS DersAdi
++ int Not
+-
++ DersNotu(DERS dersAdi, int not)
++ string NotGetir()
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>310</w><h>380</h></coordinates><panel_attributes>bg=cyan
+namespace
+ogrenci_yonetim_uygulamasi
+-
+Adres
+DersNotu
+Ogrenci
+Okul
+Uygulama
+-
+enum DERS
+    {
+        Empty ,Turkce, Mat, Sosyal, Fen, Ing
+    }
+enum SEMT
+    {
+        Empty, Avcilar, Besiktas, Kadiköy, Sisli
+    }
+enum SINIF
+    {
+        A, B, C, D
+    }
+enum CINSIYET
+    {
+        Kiz, Erkek
+    }
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>0</y><w>330</w><h>370</h></coordinates><panel_attributes>bg=blue
+Ogrenci
+-
++int No 
++string Ad 
++string Soyad 
++DateTime DogumTarihi 
++string Aciklama 
++CINSIYET Cinsiyeti 
++SINIF Sinif 
++List&lt;DersNotu&gt; Notlar
++double OgrenciOrtalaması
++List&lt;string&gt; Kitaplar = new List&lt;string&gt;();
++Adres OgrenciAdresi
+-
++string KitapListele()
++void KitapEkle(string kitapismi)
++string SonKitap()
++void DersNotuEkle(DERS ders_adi, int not)
++void NotEkle(DERS dersAdi, int not)
++Ogrenci(int no, string ad, string soyad, 
+               CINSIYET cinsiyet, DateTime dogumTarihi, 
+               SINIF sinif, string aciklama)
++void OgrenciAdresiGir(Adres adres)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>540</y><w>330</w><h>420</h></coordinates><panel_attributes>bg=green
+Okul
+-
++List&lt;Ogrenci&gt; Ogrenciler
+-
++void OgrenciEkle(  int no, string ad, string soyad, 
+                    CINSIYET cinsiyet, DateTime dogumTarihi, 
+                    SINIF sinif, string aciklama)
++void NotEkle(int no, DERS ders,int not)
++list&lt;Ogrenci&gt; TumOgrenciListesi()
++bool OgrenciVarmi(int no)
++string OgrenciListele()
++string OgrenciListele(CINSIYET _cinsiyeti)
++string OgrenciListele(DateTime tarih)
++string OgrenciListele(SEMT semt)
++string OgrenciListele(SINIF sinif)
++string OgrenciListele(int basariDurumu_1_0, int sayi)
++string OgrenciListele(SINIF sinif,int basariDurumu_1_0, int sayi)
++string OgrenciNotlarıGoruntule(int no)
++string MatNotlari(int no)
++string FenNotlari(int no)
++string TurkNotlari(int no)
++string SosNotlari(int no)
++string IngNotlari(int no)
++Ogrenci OgrenciGetir(int no)
++double SinifNotOrtalamasi(SINIF sinif)
++void OgrenciAciklamaGir(int no, string aciklama)
++string OgrenciAciklamaGetir(int no)
+void OgrenciKitapGir(int no, string kitap)
++void OgrenciSil(int no)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>630</x><y>260</y><w>190</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>170;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>630</x><y>90</y><w>190</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>170;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>360</y><w>30</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;180;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>440</y><w>310</w><h>520</h></coordinates><panel_attributes>bg=orange
+Uygulama
+-
++Okul Okulumuz
+-
++void sahteVeriGir()
++void RUN()
++void Menu()
++void U_OgrenciAciklamaGir()
++void U_OgrenciKitapGir()
++void U_OgrenciAdresiGir()
++void U_SinifOrtalamasiGor()
++void U_NotGir()
++void U_OgrenciNotlariGoster()
++void U_OkulEnIyi5()
++void U_OkulEnKotu3()
++void U_SinifEnIyi5()
++void U_SinifEnKotu3()
++void U_OgrenciSonKitap()
++void ListeYazdir()
++void U_OgrenciEkle()
++void U_OgrenciGuncelle()
++void U_OgrenciOrtalamasiGor()
++void U_OgrenciAciklamaGor()
++void U_TumOgrenciListele()
++void U_SubeOgrenciListele()
++void U_CinsiyeteGoreOgrenciGetir()
++void U_TarihtenSonrakiOgrenciler()
++void U_SemteGoreTumListele()
++void U_OgrenciKitapListele()
++void U_OgrenciSil()
+-
++static int IntAl(string text)
++static DERS DersAl()
++static CINSIYET CinsiyetAl(string text)
++static SEMT SemtAl()
++static SINIF SinifAl(string text)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>740</y><w>520</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;500;10</additional_attributes></element></diagram>
